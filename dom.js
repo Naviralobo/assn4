@@ -41,3 +41,28 @@ for(var i=0; i<items.length ;i++){
     items[i].style.fontWeight='bold';
 }
 
+
+var items=document.getElementsByClassName('list-group-item');
+
+console.log(items);
+//VM1256:1 HTMLCollection(4) [li.list-group-item, li.list-group-item, li.list-group-item, li.list-group-item]
+
+var li = document.getElementsByTagName('li');
+
+console.log(li);
+//VM1427:1 HTMLCollection(5) [li.list-group-item, li.list-group-item, li.list-group-item, li.list-group-item, li]
+
+items[4].style.color='red';
+//VM1492:1 Uncaught TypeError: Cannot read properties of undefined (reading 'style')at <anonymous>:1:10
+
+li[4].style.color='red';
+//'red'
+
+for(var i=0; i<items.length ;i++){
+    items[i].style.backgroundColor='#f4f4f4';
+}
+//'#f4f4f4'
+for(var i=0; i<li.length ;i++){
+    li[i].style.backgroundColor='#f4f4f4';
+}
+'//#f4f4f4'
