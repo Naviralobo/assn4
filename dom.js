@@ -65,4 +65,29 @@ for(var i=0; i<items.length ;i++){
 for(var i=0; i<li.length ;i++){
     li[i].style.backgroundColor='#f4f4f4';
 }
-'//#f4f4f4'
+//#f4f4f4'
+
+
+
+var secondItem = document.querySelector('.list-group-item:nth-child(2)');
+//undefined
+secondItem.style.backgroundColor='green';
+//'green'
+var thirdItem=document.querySelector('.list-group-item:nth-child(3)');
+//undefined
+thirdItem.style.visibility='hidden';
+//'hidden'
+
+
+
+var items = document.querySelectorAll('.list-group-item');
+//undefined
+items[1].style.backgroundColor='green';
+//'green'
+var odd = document.querySelectorAll('li:nth=child(odd)');
+var odd = document.querySelectorAll('li:nth-child(odd)');
+//undefined
+for(var i=0; i<odd.length;i++){
+    odd[i].style.backgroundColor='yellow';
+}
+//'yellow'
