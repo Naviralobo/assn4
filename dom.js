@@ -174,3 +174,36 @@ newDiv.appendChild(newDivText);
 //"Hello World"
 head1.insertBefore(newDiv,ul);
 //<h3 id=​"hh">​Hello World​</h3>​
+
+
+
+var form =document.getElementById('addForm');
+var itemList = document.getElementById('items');
+// add an item
+form.addEventListener('submit',(e)=>{
+    e.preventDefault();
+    var newItem=document.getElementById('item').value;
+    var li = document.createElement('li'); 
+    li.className='list-group-item'; 
+    li.appendChild(document.createTextNode(newItem));
+    //add delete button
+    var deleteBtn=document.createElement('button');
+    deleteBtn.className = 'btn btn-danger btn-sm float-right delete';
+    deleteBtn.appendChild(document.createTextNode('x'));
+    //add edit Button
+    li.appendChild(deleteBtn);
+    var editBtn=document.createElement('button');
+    editBtn.className = 'btn btn-sm float-right delete';
+    editBtn.appendChild(document.createTextNode('edit'));
+    li.appendChild(deleteBtn);
+    itemList.appendChild(li);
+});
+//delete an item
+itemList.addEventListener('click',(e)=>{
+    if(e.target.classList.contains('delete')){
+        if(confirm('Are you sure')){
+            var li=e.target.parentElement;
+            itemList.removeChild(li);
+        }
+    }
+});
