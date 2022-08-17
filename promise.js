@@ -62,9 +62,6 @@ createPost({title:'post4',body:'This is post 4'}).then(getPosts).then(updateLast
 })
 
 
-
-
-
 //createPost({title:'post3',body:'This is post 3'}).then(deletePost).then(getPosts).catch(err=>console.log(err));
 //deletePost().then(getPosts).catch(err=>console.log(err));
 //deletePost().then(getPosts).catch(err=>console.log(err));
