@@ -59,9 +59,10 @@ ul.addEventListener('click',(f)=>{
   if(f.target.classList.contains('edit')){
     var li=f.target.parentElement;
     let root = li;
-     let iter = document.createNodeIterator(root, NodeFilter.SHOW_TEXT), textnode;
+    //to iterate your list, get the 'root' as as your appended list
+     let iter = document.createNodeIterator(root, NodeFilter.SHOW_TEXT), textnode;//with root as list and everything else is formula
      while (textnode = iter.nextNode()) {
-      const splitt=textnode.textContent.split(":");
+      const splitt=textnode.textContent.split(":");//since I have seperated my objects with a colon, used this to iterate my node
       document.getElementById('email').value =splitt[1];
       document.getElementById('name').value = splitt[0];
       break;
