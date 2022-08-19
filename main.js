@@ -11,8 +11,10 @@
 
 const myForm = document.querySelector('#my-form');
 const ul =document.querySelector('#users')
+
 //console.log("myObject",myObjSerialized);
 myForm.addEventListener('submit', onSubmit);
+
 function onSubmit(e) {
  e.preventDefault(); 
 const nameInput = document.querySelector('#name').value;
@@ -32,20 +34,30 @@ deleteBtn.appendChild(document.createTextNode('Delete'));
 li.appendChild(deleteBtn);
 //appending li to ul
 ul.appendChild(li);
-//local storage
+
 const myObj={
   nameInput:nameInput,
  emailInput:emailInput
 };
-
-  localStorage.setItem("myObjects"+emailInput,JSON.stringify(myObj));
+axios.post("https://crudcrud.com/api/0fdad695edd546e8b6a9c02fb0a03c9d/appointmentData",myObj)
+.then(response => console.log(response))
+.catch(err => console.log(err))
+  //localStorage.setItem("myObjects"+emailInput,JSON.stringify(myObj));
 }
+  //  axios.get("https://crudcrud.com/api/0fdad695edd546e8b6a9c02fb0a03c9d/appointmentData")
+  //  .then((response)=>{
+  //   document.body.innerHTML=document.body.innerHTML + JSON.stringify(response.data)
+  // })
+  //   .catch(err => console.log(err))
+
+
+
 /*iterating the local storage
 for(const key of Object.keys(localStorage)){
   console.log(`${key}`);
 }*/
 //delete an item from document and local storage
-ul.addEventListener('click',(e)=>{
+/*ul.addEventListener('click',(e)=>{
     if(e.target.classList.contains('delete')){
         if(confirm('Are you sure')){
             var li=e.target.parentElement;
@@ -73,5 +85,5 @@ ul.addEventListener('click',(f)=>{
     const emailInput = document.querySelector('#email').value;
     localStorage.removeItem('myObjects'+ emailInput);
   }
-}); 
+}); */
 
