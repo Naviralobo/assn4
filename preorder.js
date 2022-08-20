@@ -59,12 +59,11 @@ class BST{
                     stack.push(root.right);
                }
                     root = root.left;
-           }
-                else{
+          }else{
                     root = stack[stack.length-1];
                     stack.pop()
-                     }
-             }
+          }
+        }
      }
 }
 const bst = new BST;

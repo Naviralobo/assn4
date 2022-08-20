@@ -46,6 +46,16 @@ class BST{
         }
         return false;
      }
+     getRoot(){
+        return this.root;
+     }
+     preorderRecursion(root){
+        if(root!=null){
+            console.log(root.data);
+            this.preorderRecursion(root.left);
+            this.preorderRecursion(root.right);
+        }
+     }
 }
 const bst = new BST;
 bst.insert(3);
