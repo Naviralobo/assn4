@@ -94,6 +94,7 @@
                 axios.delete("https://crudcrud.com/api/ed56d869c4e4470b91333901e69d9d34/appointmentDetails/63007d2a91111503e8bdd1fa")
                 .then(response=> removeUserFromScreen(emailId))
                 //removeUserFromScreen(emailId);
+                .catch(err => console.log('Error!'))
             }
             function removeUserFromScreen(emailId){
                 const parentNode = document.getElementById('listOfUsers');
