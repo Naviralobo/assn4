@@ -54,7 +54,7 @@
                 const parentNode = document.getElementById('listOfExpense');
                 const childHTML = `<li id=${exp._id}> ${exp.expense} - ${exp.description} - ${exp.category} 
                                         <img src="deleteIcon.jpg" width="15" onclick=deleteExpense('${exp._id}')> 
-                                        <img src="editIcon.jpg" width="15" onclick=editExpense('${exp._id}','${exp.expense}','${exp.description}','${exp.category}') 
+                                        <img src="editIcon.jpg" width="15" onclick=editExpense('${exp._id}','${exp.expense}','${exp.description}','${exp.category}')> 
                                      </li>`
                 parentNode.innerHTML = parentNode.innerHTML + childHTML;
             }
