@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ExpenseTrackerAwait</title>
+</head>
+    <body>
+        <form id="form"onsubmit="saveToCrud(event)">
+            <label> Expense</label>
+            <input type="text" id="expense" name="expense"  required/>
+            <label> description</label>
+            <input type="text" id="description" name="description"  required/>
+            <label> category</label>
+            <select id="category" name="category">
+                <option value="friends">Friends</option>
+                <option value="education">Education</option>
+                <option value="groceries">Groceries</option>
+                <option value="Entertainment">Entertainment</option>
+                <option value="others">Others</option>
+            </select>
+            <button> Submit </button>
+        </form>
+        <ul id='listOfExpense'></ul>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.27.2/axios.js"></script>
+        <script>
+            async function saveToCrud(event) {
+                event.preventDefault();
+                const expense = event.target.expense.value;
+                const description = event.target.description.value;
+                const category = event.target.category.value;
+                const obj = {
+                    expense,
+                    description,
+                    category
+                }
+                let post = await axios.post("https://crudcrud.com/api/492ba4634c664166904b258372bc714a/Expenses",obj)
+                console.log(post);
+                showExpenseOnScreen(obj)
+            }
+            
+            window.addEventListener('DOMContentLoaded',async ()=>{
+             let response = await axios.get("https://crudcrud.com/api/492ba4634c664166904b258372bc714a/Expenses")
+                for(let i=0;i<response.data.length;i++){
+                    showExpenseOnScreen(response.data[i]);
+                }
+            })
+
+            function showExpenseOnScreen(exp){
+                const parentNode = document.getElementById('listOfExpense');
+                const childHTML = `<li id=${exp._id}> ${exp.expense} - ${exp.description} - ${exp.category} 
+                                        <img src="deleteIcon.jpg" width="15" onclick=deleteExpense('${exp._id}')> 
+                                    <img src="editIcon.jpg" width="15" onclick=editExpense('${exp._id}','${exp.expense}','${exp.category}','${exp.description}')> 
+                                     </li>`
+                parentNode.innerHTML = parentNode.innerHTML + childHTML;
+            }
+
+            function editExpense(id,exp,cat,desc){
+                document.getElementById('expense').value = exp;
+                document.getElementById('description').value = desc;
+                 document.getElementById('category').value =cat; 
+                 removeExpenseFromScreen(id);
+                 deleteExpense(id);
+            }
+    
+
+            async function deleteExpense(id){
+                let delet = await axios.delete(`https://crudcrud.com/api/492ba4634c664166904b258372bc714a/Expenses/${id}`)
+                console.log(delet);
+                removeExpenseFromScreen(id);
+            }
+            
+            function removeExpenseFromScreen(id){
+                const parentNode = document.getElementById('listOfExpense');
+                const childNodeToBeDeleted = document.getElementById(id);
+                parentNode.removeChild(childNodeToBeDeleted)
+            }
+        </script>
+    </body>
+</html>
